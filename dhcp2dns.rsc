@@ -1,19 +1,23 @@
 :local Lhostname $"lease-hostname"
 :local Loptions $"lease-options"
 :local LactIP $leaseActIP
-
-:log info ("** ".[/system clock get time]." - Address $leaseActIP assigned to MAC $leaseActMAC of $Lhostname on server $leaseServerName")
+:local msgStr 
 
 :if ($leaseBound = "1") do={
     :log info ("** ".[/system clock get time]." - ".$"lease-hostname"." requested an IP")
+    :set msgStr "B "
 } else={
     :log info ("** ".[/system clock get time]." - ".$"lease-hostname"." released the IP")
+    :set msgStr "U "
 }
-:log info ("** ".[/system clock get time]." - Lease event 1: IP=".$LactIP)
-:log info ("** ".[/system clock get time]." - Lease event 2: Hostname=".$leaseActhostname)
-:log info ("** ".[/system clock get time]." - Lease event 3: MAC=$leaseActMAC")
-:log info ("** ".[/system clock get time]." - Lease event 4: Bound=".$leaseBound)
-:log info ("** ".[/system clock get time]." - Lease event 5: Options = ".$Loptions)
-:log info ("** ".[/system clock get time]." - Lease event 6: Options = ".$"lease-options")
 
-:log info ("** ".[/system clock get time]." - after if")
+:log info ("** ".[/system clock get time]." $msgStr - Address $leaseActIP assigned to MAC $leaseActMAC of $Lhostname on server $leaseServerName")
+
+:log info ("** ".[/system clock get time]." - Lease event 1 $msgStr: IP=".$LactIP)
+:log info ("** ".[/system clock get time]." - Lease event 2 $msgStr: Hostname=".$leaseActhostname)
+:log info ("** ".[/system clock get time]." - Lease event 3 $msgStr: MAC=$leaseActMAC")
+:log info ("** ".[/system clock get time]." - Lease event 4 $msgStr: Bound=".$leaseBound)
+:log info ("** ".[/system clock get time]." - Lease event 5 $msgStr: Options1 = ".$Loptions)
+:log info ("** ".[/system clock get time]." - Lease event 6 $msgStr: Options2 = ".$"lease-options")
+
+#:log info ("** ".[/system clock get time]." - after if")
