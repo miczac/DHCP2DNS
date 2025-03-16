@@ -2,12 +2,13 @@
 :local Loptions $"lease-options"
 :local LactIP $leaseActIP
 :local msgStr 
+:local currTime [/system clock get time] ; # this is not getting updated!
 
 :if ($leaseBound = "1") do={
-    :log info ("** ".[/system clock get time]." - ".$"lease-hostname"." requested an IP")
+    :log info ("** ".$currTime." - ".$"lease-hostname"." requested an IP")
     :set msgStr "B "
 } else={
-    :log info ("** ".[/system clock get time]." - ".$"lease-hostname"." released the IP")
+    :log info ("** ".$currTime." - ".$"lease-hostname"." released the IP")
     :set msgStr "U "
 }
 
